@@ -1,8 +1,8 @@
-
 "use client";
 
 import Image from "next/image"; // ロゴを配置するために Image をインポート
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 // 検索欄に表示するプレースホルダーの配列
 const placeholders = [
@@ -12,6 +12,7 @@ const placeholders = [
 ];
 
 export default function Home() {
+  const router = useRouter();
   // ランダム切り替えのロジック
   const [currentPlaceholder, setCurrentPlaceholder] = useState(placeholders[0]);
 
@@ -24,10 +25,15 @@ export default function Home() {
     return () => clearInterval(intervalId);
   }, []);
 
+  // フォーム送信時の処理
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // ← ページリロードを防止！
+    router.push(`/view`);
+  };
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-center py-32 px-16 bg-white dark:bg-black sm:items-start">
-        
         {/*  ロゴとサイト名  */}
         <div className="w-full mb-10 flex flex-col items-center sm:items-start">
           <Image
@@ -37,7 +43,7 @@ export default function Home() {
             height={80}
             className="rounded-full mb-4"
           />
-          
+
           {/* サイト名 */}
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
             Meshi Umatch
@@ -45,9 +51,11 @@ export default function Home() {
         </div>
         {/* ロゴとサイト名ここまで */}
 
-
         {/* 検索欄 */}
-        <form className="flex w-full items-center gap-3">
+        <form
+          onSubmit={handleSubmit}
+          className="flex w-full items-center gap-3"
+        >
           <label htmlFor="search-input" className="sr-only">
             自然言語で飲食店を検索
           </label>
@@ -65,7 +73,7 @@ export default function Home() {
               text-white {/* 変更: アイコンの色を白に */}
               transition-colors 
               hover:bg-orange-600 {/* 変更: ホバー時もオレンジの濃い色に */}
-              dark:hover:bg-orange-600" 
+              dark:hover:bg-orange-600"
             aria-label="検索"
           >
             <svg
@@ -85,9 +93,7 @@ export default function Home() {
           </button>
         </form>
         {/* 検索欄ここまで */}
-
       </main>
     </div>
   );
 }
-
