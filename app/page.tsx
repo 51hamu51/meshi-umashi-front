@@ -1,8 +1,8 @@
-
 "use client";
 
 import Image from "next/image"; // ロゴを配置するために Image をインポート
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 // 検索欄に表示するプレースホルダーの配列
 const placeholders = [
@@ -14,6 +14,7 @@ const placeholders = [
 const PLACEHOLDER_ROTATION_MS = 10000;
 
 export default function Home() {
+  const router = useRouter();
   // ランダム切り替えのロジック
   const [currentPlaceholder, setCurrentPlaceholder] = useState(placeholders[0]);
   // ★追加: 検索クエリ（入力テキスト）を管理するstate
@@ -28,11 +29,12 @@ export default function Home() {
     return () => clearInterval(intervalId);
   }, []);
 
+
   // ★追加: フォーム送信時の処理
   const handleSubmit = async (e) => {
     // フォーム送信のデフォルト動作（ページリロード）を防ぐ
     e.preventDefault();
-
+router.push(`/view`);
     // 入力が空の場合は何もしない
     if (!query.trim()) {
       return;
@@ -68,6 +70,7 @@ export default function Home() {
     } catch (error) {
       console.error("検索リクエストの送信に失敗しました:", error);
     }
+
   };
 
   return (
@@ -82,12 +85,19 @@ export default function Home() {
             height={400}
             className="rounded-full mb-4"
           />
+
+          {/* サイト名 */}
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+            Meshi Umatch
+          </h1>
         </div>
         {/* ロゴとサイト名ここまで */}
 
         {/* 検索欄 */}
-        {/* ★変更: onSubmitイベントハンドラを追加 */}
-        <form className="flex w-full items-center gap-3" onSubmit={handleSubmit}>
+        <form
+          onSubmit={handleSubmit}
+          className="flex w-full items-center gap-3"
+        >
           <label htmlFor="search-input" className="sr-only">
             自然言語で飲食店を検索
           </label>
@@ -107,7 +117,7 @@ export default function Home() {
               bg-orange-500 
               text-white 
               transition-colors 
-              hover:bg-orange-600 
+              hover:bg-orange-600 {/* 変更: ホバー時もオレンジの濃い色に */}
               dark:hover:bg-orange-600"
             aria-label="検索"
           >
@@ -132,4 +142,3 @@ export default function Home() {
     </div>
   );
 }
-

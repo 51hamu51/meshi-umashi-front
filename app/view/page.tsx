@@ -3,6 +3,7 @@
 
 // 状態管理(useState)と、副作用(useEffect)をインポートします
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 // 💡TypeScriptを使用する場合、ここで型定義をすると便利です
 // type Store = {
@@ -19,6 +20,7 @@ import { useState, useEffect } from "react";
 
 // コンポーネント名は 'View' にします
 export default function View() {
+  const router = useRouter();
   // 💡 APIから取得した「すべてのお店」のデータを保持するstate
   const [allStores, setAllStores] = useState([]); // 初期値は空の配列 // 検索ボックスの入力値を管理するためのstate
   const [searchQuery, setSearchQuery] = useState(""); // 💡 画面が最初に読み込まれた時に一度だけ実行される
@@ -96,6 +98,14 @@ export default function View() {
         <h1 className="text-2xl font-bold tracking-tight text-orange-600 dark:text-orange-400">
           ぐるめ検索
         </h1>
+        <button
+          onClick={() => router.push("/")}
+          className="rounded-md bg-gray-200 px-4 py-2 text-sm font-semibold text-gray-800 
+                       shadow-sm transition-colors hover:bg-gray-300 dark:bg-zinc-800 
+                       dark:text-white dark:hover:bg-zinc-700"
+        >
+          ← トップに戻る
+        </button>
         <div className="flex w-full gap-2">
           <input
             type="text"
