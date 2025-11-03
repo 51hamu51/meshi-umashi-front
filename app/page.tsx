@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image"; // ロゴを配置するために Image をインポート
@@ -89,3 +90,4 @@ export default function Home() {
     </div>
   );
 }
+
