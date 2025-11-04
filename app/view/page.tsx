@@ -96,7 +96,7 @@ export default function View() {
     <div className="flex min-h-screen w-full justify-center bg-gray-100 font-sans dark:bg-zinc-900">
       <main className="flex w-full max-w-3xl flex-col items-start gap-8 p-4 md:p-8">
         <h1 className="text-2xl font-bold tracking-tight text-orange-600 dark:text-orange-400">
-          ぐるめ検索
+          検索結果
         </h1>
         <button
           onClick={() => router.push("/")}
@@ -106,25 +106,8 @@ export default function View() {
         >
           ← トップに戻る
         </button>
-        <div className="flex w-full gap-2">
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="お店の名前、アピールポイント..." // 💡 placeholder変更
-            className="flex-grow rounded-md border border-gray-300 px-4 py-2 text-base text-black shadow-sm focus:border-orange-500 focus:ring-orange-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-white"
-          />
-          <button
-            type="button"
-            className="rounded-md bg-orange-500 px-6 py-2 font-semibold text-white shadow-sm transition-colors hover:bg-orange-600"
-          >
-            検索
-          </button>
-        </div>
+
         <div className="w-full">
-          <h2 className="mb-4 text-xl font-semibold text-black dark:text-zinc-50">
-            検索結果
-          </h2>
           {/* 💡 APIからデータを取得するまでは filteredItems.length は 0 */}
           {filteredItems.length > 0 ? (
             <ul className="flex flex-col gap-4">
