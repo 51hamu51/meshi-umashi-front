@@ -6,23 +6,23 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 // 💡TypeScriptを使用する場合、ここで型定義をすると便利です
-// type Store = {
-//  id: number;
-//  store_name: string;
-//  taste: number;
-//  cleanliness: number;
-//  atmosphere: number;
-//  price: number;
-//  appeal_point: string;
-//  url: string;
-//  image_path: string;
-// };
+type Store = {
+  id: number;
+  store_name: string;
+  taste: number;
+  cleanliness: number;
+  atmosphere: number;
+  price: number;
+  appeal_point: string;
+  url: string;
+  image_path: string;
+};
 
 // コンポーネント名は 'View' にします
 export default function View() {
   const router = useRouter();
   // 💡 APIから取得した「すべてのお店」のデータを保持するstate
-  const [allStores, setAllStores] = useState([]); // 初期値は空の配列 // 検索ボックスの入力値を管理するためのstate
+  const [allStores, setAllStores] = useState<Store[]>([]); // 初期値は空の配列 // 検索ボックスの入力値を管理するためのstate
   const [searchQuery, setSearchQuery] = useState(""); // 💡 画面が最初に読み込まれた時に一度だけ実行される
 
   useEffect(() => {
@@ -88,7 +88,7 @@ export default function View() {
         item.appeal_point.toLowerCase().includes(searchQuery.toLowerCase()))
   ); // 予約ボタンがクリックされたときの処理
 
-  const handleReservationClick = (storeName) => {
+  const handleReservationClick = (storeName: string) => {
     alert(`${storeName} を予約します`);
   };
 
