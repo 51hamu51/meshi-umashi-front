@@ -85,11 +85,6 @@ router.push(`/view`);
             height={400}
             className="rounded-full mb-4"
           />
-
-          {/* サイト名 */}
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-            Meshi Umatch
-          </h1>
         </div>
         {/* ロゴとサイト名ここまで */}
 
