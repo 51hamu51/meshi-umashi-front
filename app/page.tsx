@@ -29,12 +29,11 @@ export default function Home() {
     return () => clearInterval(intervalId);
   }, []);
 
-
   // ★追加: フォーム送信時の処理
   const handleSubmit = async (e) => {
     // フォーム送信のデフォルト動作（ページリロード）を防ぐ
     e.preventDefault();
-router.push(`/view`);
+    router.push(`/view`);
     // 入力が空の場合は何もしない
     if (!query.trim()) {
       return;
@@ -66,11 +65,9 @@ router.push(`/view`);
 
       // (オプション) 送信後に検索欄をクリアする場合
       // setQuery("");
-
     } catch (error) {
       console.error("検索リクエストの送信に失敗しました:", error);
     }
-
   };
 
   return (

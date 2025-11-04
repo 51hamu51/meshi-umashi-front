@@ -48,7 +48,7 @@ export default function View() {
           price: 3,
           appeal_point: "席が広く、雰囲気が静かで作業に集中できます。",
           url: "https://nextjs.org/docs",
-          image_path: "https://via.placeholder.com/150/F2994A/FFFFFF?text=Cafe",
+          image_path: "next.jpg",
         },
         {
           id: 2,
@@ -59,8 +59,7 @@ export default function View() {
           price: 2,
           appeal_point: "とにかくスープが絶品。店内も清潔です。",
           url: "https://react.dev/",
-          image_path:
-            "https://via.placeholder.com/150/2D9CDB/FFFFFF?text=Ramen",
+          image_path: "react.webp",
         },
         {
           id: 3,
@@ -71,8 +70,7 @@ export default function View() {
           price: 4,
           appeal_point: "おしゃれな内装でデートにぴったり。",
           url: "https://tailwindcss.com/",
-          image_path:
-            "https://via.placeholder.com/150/56CCF2/FFFFFF?text=Bistro",
+          image_path: "tail.png",
         },
       ];
       setAllStores(mockData); // 取得したデータでstateを更新 // --- ここまでモックデータ ---
